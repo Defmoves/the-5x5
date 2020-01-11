@@ -4,6 +4,8 @@ import Grid from "@material-ui/core/Grid";
 require("es6-promise").polyfill();
 import fetch from "isomorphic-fetch";
 
+import Card from "./card";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -71,11 +73,13 @@ export default function LatestNews() {
           </ul>
         </Grid>
         <Grid item xs={9}>
-          <ul>
-            {articles.map(({ title }, index) => (
-              <li key={index}>{title}</li>
+          <Grid container item>
+            {articles.map((article, index) => (
+              <Grid item xs={6} key={index}>
+                <Card article={article} />
+              </Grid>
             ))}
-          </ul>
+          </Grid>
         </Grid>
       </Grid>
     </div>
