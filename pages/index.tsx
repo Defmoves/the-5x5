@@ -2,8 +2,9 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+
+import LatestNews from "../src/latest-news";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,14 +33,7 @@ export default function ButtonAppBar() {
         </Typography>
       </AppBar>
       <Container fixed>
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            Source Select
-          </Grid>
-          <Grid item xs={9}>
-            Latest News
-          </Grid>
-        </Grid>
+        <LatestNews />
       </Container>
     </div>
   );
