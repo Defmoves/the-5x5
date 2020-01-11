@@ -1,6 +1,8 @@
 import React, { FunctionComponent, useState, useCallback } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+require("es6-promise").polyfill();
+import fetch from "isomorphic-fetch";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,9 +29,20 @@ export default function LatestNews() {
   const classes = useStyles();
   const [nation, setNation] = useState("gb");
   const handleClick = useCallback(
-    id => {
-      console.log(id);
-      setNation(id);
+    nation => {
+      setNation(nation);
+      fetch(
+        `https://newsapi.org/v2/top-headlines?country=${nation}&apiKey=0852522f32884999b85fde10267fca5e&pageSize=5`
+      )
+        .then(response => {
+          if (response.status >= 400) {
+            throw new Error("Bad response from server");
+          }
+          return response.json();
+        })
+        .then(response => {
+          console.log(response.articles);
+        });
     },
     [nation]
   );
