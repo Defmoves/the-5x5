@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState, useCallback } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
@@ -23,8 +23,16 @@ const Button: FunctionComponent<buttonProps> = ({ onClick, name }) => (
   <button onClick={onClick}>{name}</button>
 );
 
-export default function ButtonAppBar() {
+export default function LatestNews() {
   const classes = useStyles();
+  const [nation, setNation] = useState("gb");
+  const handleClick = useCallback(
+    id => {
+      console.log(id);
+      setNation(id);
+    },
+    [nation]
+  );
 
   return (
     <div className={classes.root}>
@@ -32,19 +40,19 @@ export default function ButtonAppBar() {
         <Grid item xs={3}>
           <ul>
             <li className={classes.listItem}>
-              <Button name="United Kingdom" />
+              <Button name="United Kingdom" onClick={() => handleClick("gb")} />
             </li>
             <li className={classes.listItem}>
-              <Button name="United States" />
+              <Button name="United States" onClick={() => handleClick("us")} />
             </li>
-            <li className={classes.listItem}>
+            <li className={classes.listItem} onClick={() => handleClick("fr")}>
               <Button name="France" />
             </li>
-            <li className={classes.listItem}>
+            <li className={classes.listItem} onClick={() => handleClick("au")}>
               <Button name="Australia" />
             </li>
             <li className={classes.listItem}>
-              <Button name="India" />
+              <Button name="India" onClick={() => handleClick("in")} />
             </li>
           </ul>
         </Grid>
