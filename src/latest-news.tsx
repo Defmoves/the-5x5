@@ -28,6 +28,7 @@ const Button: FunctionComponent<buttonProps> = ({ onClick, name }) => (
 export default function LatestNews() {
   const classes = useStyles();
   const [nation, setNation] = useState("gb");
+  const [articles, setArticles] = useState([]);
   const handleClick = useCallback(
     nation => {
       setNation(nation);
@@ -41,7 +42,7 @@ export default function LatestNews() {
           return response.json();
         })
         .then(response => {
-          console.log(response.articles);
+          setArticles(response.articles);
         });
     },
     [nation]
@@ -70,7 +71,11 @@ export default function LatestNews() {
           </ul>
         </Grid>
         <Grid item xs={9}>
-          Latest News
+          <ul>
+            {articles.map(({ title }, index) => (
+              <li key={index}>{title}</li>
+            ))}
+          </ul>
         </Grid>
       </Grid>
     </div>
