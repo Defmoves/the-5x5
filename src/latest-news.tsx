@@ -27,27 +27,26 @@ const Button: FunctionComponent<buttonProps> = ({ onClick, name }) => (
   <button onClick={onClick}>{name}</button>
 );
 
+const fetchArticlesWith = async (country: string) => {
+  const response = await fetch(
+    `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=0852522f32884999b85fde10267fca5e&pageSize=5`
+  );
+  if (response.status >= 400) return "error";
+  const json = await response.json();
+  return json.articles;
+};
+
 export default function LatestNews() {
   const classes = useStyles();
-  const [nation, setNation] = useState("gb");
+  const [country, setCountry] = useState("gb");
   const [articles, setArticles] = useState([]);
   const handleClick = useCallback(
-    nation => {
-      setNation(nation);
-      fetch(
-        `https://newsapi.org/v2/top-headlines?country=${nation}&apiKey=0852522f32884999b85fde10267fca5e&pageSize=5`
-      )
-        .then(response => {
-          if (response.status >= 400) {
-            throw new Error("Bad response from server");
-          }
-          return response.json();
-        })
-        .then(response => {
-          setArticles(response.articles);
-        });
+    async country => {
+      setCountry(country);
+      const articles = await fetchArticlesWith(country);
+      setArticles(articles);
     },
-    [nation]
+    [country]
   );
 
   return (
@@ -74,11 +73,12 @@ export default function LatestNews() {
         </Grid>
         <Grid item xs={9}>
           <Grid container item>
-            {articles.map((article, index) => (
-              <Grid item xs={6} key={index}>
-                <Card article={article} />
-              </Grid>
-            ))}
+            {articles.length &&
+              articles.map((article, index) => (
+                <Grid item xs={6} key={index}>
+                  <Card article={article} />
+                </Grid>
+              ))}
           </Grid>
         </Grid>
       </Grid>
