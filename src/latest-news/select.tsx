@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(2),
       justifyContent: "space-between",
       flexDirection: "row",
-      borderBottom: "1px solid #000"
+      borderBottom: `1px solid`
     },
     name: {},
     switch: { width: 60 }
