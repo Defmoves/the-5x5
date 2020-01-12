@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import Switch from "@material-ui/core/Switch";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -9,38 +11,83 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface buttonProps {
-  onClick?: () => void;
-  name?: string;
-}
-
-// TODO: replace this with a more elegant interface
-const Button: FunctionComponent<buttonProps> = ({ onClick, name }) => (
-  <button onClick={onClick}>{name}</button>
-);
-
 interface props {
   handleClick: (country: string) => void;
+  country: string;
 }
 
-export default function Select({ handleClick }: props): JSX.Element {
+export default function LatestNews({
+  handleClick,
+  country
+}: props): JSX.Element {
   const classes = useStyles();
+
   return (
     <ul>
       <li className={classes.listItem}>
-        <Button name="United Kingdom" onClick={() => handleClick("gb")} />
+        <Typography gutterBottom variant="h6" component="h2">
+          United Kingdom
+        </Typography>
+        <Switch
+          checked={country === "gb"}
+          onChange={() => {
+            handleClick("gb");
+          }}
+          value="gb"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
       </li>
       <li className={classes.listItem}>
-        <Button name="United States" onClick={() => handleClick("us")} />
-      </li>
-      <li className={classes.listItem} onClick={() => handleClick("fr")}>
-        <Button name="France" />
-      </li>
-      <li className={classes.listItem} onClick={() => handleClick("au")}>
-        <Button name="Australia" />
+        <Typography gutterBottom variant="h6" component="h2">
+          United States
+        </Typography>
+        <Switch
+          checked={country === "us"}
+          onChange={() => {
+            handleClick("us");
+          }}
+          value="us"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
       </li>
       <li className={classes.listItem}>
-        <Button name="India" onClick={() => handleClick("in")} />
+        <Typography gutterBottom variant="h6" component="h2">
+          France
+        </Typography>
+        <Switch
+          checked={country === "fr"}
+          onChange={() => {
+            handleClick("fr");
+          }}
+          value="fr"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
+      </li>
+      <li className={classes.listItem}>
+        <Typography gutterBottom variant="h6" component="h2">
+          Australia
+        </Typography>
+        <Switch
+          checked={country === "au"}
+          onChange={() => {
+            handleClick("au");
+          }}
+          value="au"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
+      </li>
+      <li className={classes.listItem}>
+        <Typography gutterBottom variant="h6" component="h2">
+          India
+        </Typography>
+        <Switch
+          checked={country === "in"}
+          onChange={() => {
+            handleClick("in");
+          }}
+          value="in"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
       </li>
     </ul>
   );

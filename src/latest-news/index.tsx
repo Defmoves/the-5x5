@@ -42,7 +42,7 @@ export default function LatestNews() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Select handleClick={handleClick} />
+          <Select handleClick={handleClick} country={country} />
         </Grid>
         <Grid item xs={9}>
           <List articles={articles} />
