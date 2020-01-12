@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 require("es6-promise").polyfill();
 import fetch from "isomorphic-fetch";
 
-import Card from "./card";
+import Card from "../card";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

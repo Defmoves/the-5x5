@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
-import LatestNews from "../src/latest-news";
+import LatestNews from "../src/latest-news/";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
