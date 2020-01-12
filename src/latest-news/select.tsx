@@ -13,9 +13,20 @@ const countries = [
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    listItem: {
-      padding: theme.spacing(1)
-    }
+    list: {
+      display: "flex",
+      flexDirection: "column"
+    },
+    row: {
+      display: "flex",
+      paddingBottom: theme.spacing(1),
+      marginBottom: theme.spacing(2),
+      justifyContent: "space-between",
+      flexDirection: "row",
+      borderBottom: "1px solid #000"
+    },
+    name: {},
+    switch: { width: 60 }
   })
 );
 
@@ -28,24 +39,28 @@ export default function Select({ handleClick, selected }: props): JSX.Element {
   const classes = useStyles();
 
   return (
-    <ul>
+    <div className={classes.list}>
       {countries.map(country => {
         return (
-          <li className={classes.listItem}>
-            <Typography gutterBottom variant="h6" component="h2">
-              {country.name}
-            </Typography>
-            <Switch
-              checked={selected === country.id}
-              onChange={() => {
-                handleClick(country.id);
-              }}
-              value={country.id}
-              inputProps={{ "aria-label": "secondary checkbox" }}
-            />
-          </li>
+          <div className={classes.row}>
+            <div className={classes.name}>
+              <Typography gutterBottom variant="subtitle1" component="h2">
+                {country.name}
+              </Typography>
+            </div>
+            <div className={classes.switch}>
+              <Switch
+                checked={selected === country.id}
+                onChange={() => {
+                  handleClick(country.id);
+                }}
+                value={country.id}
+                inputProps={{ "aria-label": "secondary checkbox" }}
+              />
+            </div>
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 }
