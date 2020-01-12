@@ -27,8 +27,8 @@ export default function App() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.header}>
-        <Typography variant="h6" className={classes.title}>
+      <AppBar position="static" className={classes.header} color={"secondary"}>
+        <Typography variant="h3" className={classes.title}>
           The 5x5
         </Typography>
       </AppBar>
