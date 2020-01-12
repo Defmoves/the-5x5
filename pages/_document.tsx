@@ -5,8 +5,9 @@ import theme from "../src/theme";
 
 export default class MyDocument extends Document {
   render() {
+    const htmlStyle = { overflowY: "scroll" };
     return (
-      <html lang="en">
+      <html lang="en" style={htmlStyle}>
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
