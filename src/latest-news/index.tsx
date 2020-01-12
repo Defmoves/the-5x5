@@ -1,30 +1,18 @@
-import React, { FunctionComponent, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 require("es6-promise").polyfill();
 import fetch from "isomorphic-fetch";
 
+import Select from "./select";
 import List from "./list";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: theme.spacing(2)
-    },
-    listItem: {
-      padding: theme.spacing(1)
     }
   })
-);
-
-interface buttonProps {
-  onClick?: () => void;
-  name?: string;
-}
-
-// TODO: replace this with a more elegant interface
-const Button: FunctionComponent<buttonProps> = ({ onClick, name }) => (
-  <button onClick={onClick}>{name}</button>
 );
 
 const fetchArticlesWith = async (country: string) => {
@@ -38,7 +26,7 @@ const fetchArticlesWith = async (country: string) => {
 
 export default function LatestNews() {
   const classes = useStyles();
-  const [country, setCountry] = useState("gb");
+  const [country, setCountry] = useState("");
   const [articles, setArticles] = useState("firstLoad");
   const handleClick = useCallback(
     async country => {
@@ -54,23 +42,7 @@ export default function LatestNews() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <ul>
-            <li className={classes.listItem}>
-              <Button name="United Kingdom" onClick={() => handleClick("gb")} />
-            </li>
-            <li className={classes.listItem}>
-              <Button name="United States" onClick={() => handleClick("us")} />
-            </li>
-            <li className={classes.listItem} onClick={() => handleClick("fr")}>
-              <Button name="France" />
-            </li>
-            <li className={classes.listItem} onClick={() => handleClick("au")}>
-              <Button name="Australia" />
-            </li>
-            <li className={classes.listItem}>
-              <Button name="India" onClick={() => handleClick("in")} />
-            </li>
-          </ul>
+          <Select handleClick={handleClick} />
         </Grid>
         <Grid item xs={9}>
           <List articles={articles} />
