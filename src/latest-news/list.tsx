@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 import Card from "../card";
 
@@ -17,7 +18,7 @@ export default function List({ articles }: props): JSX.Element {
   if (articles === "loading")
     return (
       <Grid item xs={12}>
-        Loading, please wait...
+        <LinearProgress color="secondary" />
       </Grid>
     );
   if (articles === "error")
