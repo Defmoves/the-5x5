@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 require("es6-promise").polyfill();
 import fetch from "isomorphic-fetch";
 
-import Card from "../card";
+import List from "./list";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,10 +39,11 @@ const fetchArticlesWith = async (country: string) => {
 export default function LatestNews() {
   const classes = useStyles();
   const [country, setCountry] = useState("gb");
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState("firstLoad");
   const handleClick = useCallback(
     async country => {
       setCountry(country);
+      setArticles("loading");
       const articles = await fetchArticlesWith(country);
       setArticles(articles);
     },
@@ -72,14 +73,7 @@ export default function LatestNews() {
           </ul>
         </Grid>
         <Grid item xs={9}>
-          <Grid container item>
-            {articles.length &&
-              articles.map((article, index) => (
-                <Grid item xs={6} key={index}>
-                  <Card article={article} />
-                </Grid>
-              ))}
-          </Grid>
+          <List articles={articles} />
         </Grid>
       </Grid>
     </div>

@@ -10,12 +10,17 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {},
-  media: {
-    height: 140
+  lead: {
+    height: 280,
+    backgroundPosition: "top"
+  },
+  main: {
+    height: 140,
+    backgroundPosition: "top"
   }
 });
 
-type article = {
+type articleType = {
   title: string;
   description: string;
   urlToImage: string;
@@ -23,24 +28,27 @@ type article = {
 };
 
 interface props {
-  article: article;
+  article: articleType | any;
+  type: string;
 }
 
 export default function MediaCard({
-  article: { title, description, urlToImage, url }
+  article: { title, description, urlToImage, url },
+  type
 }: props) {
   const classes = useStyles();
+  const mediaClass = type === "lead" ? classes.lead : classes.main;
 
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
-          className={classes.media}
+          className={mediaClass}
           image={urlToImage || "http://placekitten.com/g/200/300"}
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h6" component="h2">
             {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
