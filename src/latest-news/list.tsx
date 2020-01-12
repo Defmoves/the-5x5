@@ -7,7 +7,7 @@ interface props {
   articles: string | object[];
 }
 
-export default function List({ articles }: props) {
+export default function List({ articles }: props): JSX.Element {
   if (articles === "firstLoad")
     return (
       <Grid item xs={12}>
