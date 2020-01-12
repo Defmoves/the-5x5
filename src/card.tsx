@@ -17,6 +17,9 @@ const useStyles = makeStyles({
   main: {
     height: 140,
     backgroundPosition: "top"
+  },
+  readMore: {
+    marginLeft: "auto"
   }
 });
 
@@ -38,6 +41,9 @@ export default function MediaCard({
 }: props) {
   const classes = useStyles();
   const mediaClass = type === "lead" ? classes.lead : classes.main;
+  const handleClick = () => {
+    window.open(url, "_blank");
+  };
 
   return (
     <Card className={classes.card} elevation={0}>
@@ -57,10 +63,15 @@ export default function MediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          <a href={url} target="_blank">
-            Read more
-          </a>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleClick}
+          className={classes.readMore}
+          disableElevation
+          size={"small"}
+        >
+          Read
         </Button>
       </CardActions>
     </Card>
