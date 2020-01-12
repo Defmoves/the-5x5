@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
-  card: {},
+  card: { borderRadius: 0, borderBottom: "1px solid #000" },
   lead: {
     height: 280,
     backgroundPosition: "top"
@@ -40,7 +40,7 @@ export default function MediaCard({
   const mediaClass = type === "lead" ? classes.lead : classes.main;
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} elevation={0}>
       <CardActionArea>
         <CardMedia
           className={mediaClass}
