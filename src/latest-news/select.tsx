@@ -40,9 +40,9 @@ export default function Select({ handleClick, selected }: props): JSX.Element {
 
   return (
     <div className={classes.list}>
-      {countries.map(country => {
+      {countries.map((country, index) => {
         return (
-          <div className={classes.row}>
+          <div className={classes.row} key={index}>
             <div className={classes.name}>
               <Typography gutterBottom variant="subtitle1" component="h2">
                 {country.name}
