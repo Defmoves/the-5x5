@@ -19,7 +19,8 @@ const fetchArticlesWith = async (country: string) => {
   const response = await fetch(
     `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=0852522f32884999b85fde10267fca5e&pageSize=5`
   );
-  if (response.status >= 400) return "error";
+  if (response.status >= 400)
+    return ["Cannot contact API at this time, please try later"];
   const json = await response.json();
   return json.articles;
 };
@@ -27,11 +28,13 @@ const fetchArticlesWith = async (country: string) => {
 export default function LatestNews() {
   const classes = useStyles();
   const [country, setCountry] = useState("");
-  const [articles, setArticles] = useState("firstLoad");
+  const [articles, setArticles] = useState([
+    "Please select a Country from the panel on the left."
+  ]);
   const handleClick = useCallback(
     async country => {
       setCountry(country);
-      setArticles("loading");
+      setArticles([]);
       const articles = await fetchArticlesWith(country);
       setArticles(articles);
     },
