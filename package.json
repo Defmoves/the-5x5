@@ -15,22 +15,13 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "test": "jest"
+    "start": "next start"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.8.3",
-    "@babel/preset-react": "^7.8.3",
-    "@babel/preset-typescript": "^7.8.3",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@types/jest": "^24.0.25",
     "@types/next": "latest",
     "@types/node": "^13.1.6",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "babel-jest": "^24.9.0",
-    "jest": "^24.9.0",
     "typescript": "latest"
   }
 }
