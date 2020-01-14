@@ -51,7 +51,7 @@ export default function MediaCard({
         <CardMedia
           className={mediaClass}
           image={urlToImage || "https://source.unsplash.com/600x400/?news"}
-          title="Contemplative Reptile"
+          title={title}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
