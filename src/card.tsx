@@ -50,7 +50,7 @@ export default function MediaCard({
       <CardActionArea>
         <CardMedia
           className={mediaClass}
-          image={urlToImage || "http://placekitten.com/g/200/300"}
+          image={urlToImage || "https://source.unsplash.com/600x400/?news"}
           title="Contemplative Reptile"
         />
         <CardContent>
