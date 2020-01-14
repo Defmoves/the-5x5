@@ -50,12 +50,15 @@ export default function Select({ handleClick, selected }: props): JSX.Element {
             </div>
             <div className={classes.switch}>
               <Switch
+                data-testid={`switch-${country.id}`}
                 checked={selected === country.id}
                 onChange={() => {
                   handleClick(country.id);
                 }}
                 value={country.id}
-                inputProps={{ "aria-label": "secondary checkbox" }}
+                inputProps={{
+                  "aria-label": `select ${country.name}`
+                }}
               />
             </div>
           </div>
