@@ -5,33 +5,26 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Card from "../card";
 
 interface props {
-  articles: string | object[];
+  articles: (object | string)[];
 }
 
 export default function List({ articles }: props): JSX.Element {
-  if (articles === "firstLoad")
+  const internalMessage = typeof articles[0] === "string" ? articles[0] : null;
+  const loading = !articles.length ? (
+    <LinearProgress color="secondary" />
+  ) : null;
+
+  if (internalMessage || loading)
     return (
       <Grid item xs={12}>
-        Please select a Country
-      </Grid>
-    );
-  if (articles === "loading")
-    return (
-      <Grid item xs={12}>
-        <LinearProgress color="secondary" />
-      </Grid>
-    );
-  if (articles === "error")
-    return (
-      <Grid item xs={12}>
-        Cannot contact API at this time, please try later
+        {internalMessage || loading}
       </Grid>
     );
 
   const lead = articles[0];
-  const mainArticles =
-    Array.isArray(articles) &&
-    articles.filter((article, index) => article && index !== 0);
+  const mainArticles = articles.filter(
+    (article, index) => article && index !== 0
+  );
 
   return (
     <Grid container spacing={1}>
