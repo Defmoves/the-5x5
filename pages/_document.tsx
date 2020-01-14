@@ -3,11 +3,14 @@ import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import theme from "../src/theme";
 
+const mainStyle: React.CSSProperties = {
+  overflowY: "scroll"
+};
+
 export default class MyDocument extends Document {
   render() {
-    const htmlStyle = { overflowY: "scroll" };
     return (
-      <html lang="en" style={htmlStyle}>
+      <html lang="en" style={mainStyle}>
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
