@@ -10,8 +10,7 @@
     "isomorphic-fetch": "^2.2.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "react-flat-flags": "^1.0.2"
+    "react-dom": "latest"
   },
   "scripts": {
     "dev": "next",

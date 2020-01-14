@@ -2,20 +2,13 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
-import {
-  UnitedKingdom,
-  UnitedStates,
-  France,
-  Australia,
-  India
-} from "react-flat-flags";
 
 const countries = [
-  { id: "gb", name: "United Kingdom", flag: UnitedKingdom },
-  { id: "us", name: "United States", flag: UnitedStates },
-  { id: "fr", name: "France", flag: France },
-  { id: "au", name: "Australia", flag: Australia },
-  { id: "in", name: "India", flag: India }
+  { id: "gb", name: "United Kingdom" },
+  { id: "us", name: "United States" },
+  { id: "fr", name: "France" },
+  { id: "au", name: "Australia" },
+  { id: "in", name: "India" }
 ];
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,8 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       borderBottom: `1px solid`
     },
-    flag: {},
-    name: {},
     switch: { width: 60 }
   })
 );
@@ -51,10 +42,7 @@ export default function Select({ handleClick, selected }: props): JSX.Element {
       {countries.map((country, index) => {
         return (
           <div className={classes.row} key={index}>
-            <div className={classes.flag}>
-              <country.flag alt={`${country.name} flag`} />
-            </div>
-            <div className={classes.name}>
+            <div>
               <Typography gutterBottom variant="subtitle1" component="h2">
                 {country.name}
               </Typography>
