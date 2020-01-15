@@ -15,9 +15,8 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-export const errorMessage = "Cannot contact API at this time, please try later";
-export const welcomeMessage = "Please select a Country.";
-
+export const errorMessage =
+  "Well this is embarassing, we cannot contact our service right now, please try later...";
 const fetchArticlesWith = async (country: string) => {
   const response = await fetch(
     `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=0852522f32884999b85fde10267fca5e&pageSize=5`
@@ -27,10 +26,14 @@ const fetchArticlesWith = async (country: string) => {
   return json.articles;
 };
 
-const LatestNews = () => {
+type props = {
+  initialArticles: object[];
+};
+
+const LatestNews = ({ initialArticles }: props) => {
   const classes = useStyles();
-  const [country, setCountry] = useState("");
-  const [articles, setArticles] = useState([welcomeMessage]);
+  const [country, setCountry] = useState("gb");
+  const [articles, setArticles] = useState(initialArticles);
   const handleClick = useCallback(
     async country => {
       setCountry(country);

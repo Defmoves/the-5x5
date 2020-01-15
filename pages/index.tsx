@@ -2,6 +2,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Container from "@material-ui/core/Container";
+import fetch from "isomorphic-fetch";
 
 import LatestNews from "../src/latest-news/";
 
@@ -29,7 +30,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const App = () => {
+type props = {
+  articles: object[];
+};
+
+const App = ({ articles }: props) => {
   const classes = useStyles();
 
   return (
@@ -38,10 +43,18 @@ const App = () => {
         <h1 className={classes.title}>The 5x5</h1>
       </AppBar>
       <Container fixed>
-        <LatestNews />
+        <LatestNews initialArticles={articles} />
       </Container>
     </div>
   );
+};
+
+App.getInitialProps = async () => {
+  const res = await fetch(
+    `https://newsapi.org/v2/top-headlines?country=gb&apiKey=0852522f32884999b85fde10267fca5e&pageSize=5`
+  );
+  const json = await res.json();
+  return { articles: json.articles };
 };
 
 export default App;
