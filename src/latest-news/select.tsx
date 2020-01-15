@@ -21,9 +21,19 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       paddingBottom: theme.spacing(1),
       marginBottom: theme.spacing(2),
+      [theme.breakpoints.down("sm")]: {
+        marginBottom: theme.spacing(0),
+        paddingBottom: theme.spacing(0)
+      },
       justifyContent: "space-between",
       flexDirection: "row",
       borderBottom: `1px solid`
+    },
+    country: {
+      paddingTop: theme.spacing(0.5),
+      [theme.breakpoints.down("sm")]: {
+        paddingTop: theme.spacing(1)
+      }
     },
     switch: { width: 60 }
   })
@@ -42,7 +52,7 @@ export default function Select({ handleClick, selected }: props): JSX.Element {
       {countries.map((country, index) => {
         return (
           <div className={classes.row} key={index}>
-            <div>
+            <div className={classes.country}>
               <Typography gutterBottom variant="subtitle1" component="h2">
                 {country.name}
               </Typography>

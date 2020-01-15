@@ -12,12 +12,18 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     header: {
       marginBottom: theme.spacing(3),
+      [theme.breakpoints.down("sm")]: {
+        marginBottom: theme.spacing(2)
+      },
       textAlign: "center",
       fontFamily: "'Playfair Display SC', serif",
-      fontSize: 18,
       fontWeight: 700
     },
     title: {
+      fontSize: 28,
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 20
+      },
       flexGrow: 1
     }
   })

@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -8,20 +8,29 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
-  card: { borderRadius: 0, borderBottom: "1px solid #000" },
-  lead: {
-    height: 280,
-    backgroundPosition: "top"
-  },
-  main: {
-    height: 140,
-    backgroundPosition: "top"
-  },
-  readMore: {
-    marginLeft: "auto"
-  }
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    card: {
+      borderRadius: 0,
+      borderBottom: "1px solid #000",
+      marginBottom: theme.spacing(2),
+      [theme.breakpoints.down("sm")]: {
+        marginBottom: theme.spacing(0)
+      }
+    },
+    lead: {
+      height: 280,
+      backgroundPosition: "top"
+    },
+    main: {
+      height: 140,
+      backgroundPosition: "top"
+    },
+    readMore: {
+      marginLeft: "auto"
+    }
+  })
+);
 
 type articleType = {
   title: string;

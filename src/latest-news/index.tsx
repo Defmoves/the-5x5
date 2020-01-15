@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 require("es6-promise").polyfill();
 import fetch from "isomorphic-fetch";
@@ -7,17 +7,16 @@ import fetch from "isomorphic-fetch";
 import Select from "./select";
 import List from "./list";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(theme =>
   createStyles({
     root: {
-      padding: theme.spacing(2)
+      padding: theme.spacing(0)
     }
   })
 );
 
 export const errorMessage = "Cannot contact API at this time, please try later";
-export const welcomeMessage =
-  "Please select a Country from the panel on the left.";
+export const welcomeMessage = "Please select a Country.";
 
 const fetchArticlesWith = async (country: string) => {
   const response = await fetch(
@@ -45,10 +44,10 @@ export default function LatestNews() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={12}>
           <Select handleClick={handleClick} selected={country} />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item md={9} xs={12}>
           <List articles={articles} />
         </Grid>
       </Grid>
