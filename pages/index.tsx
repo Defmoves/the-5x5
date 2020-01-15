@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function App() {
+const App = () => {
   const classes = useStyles();
 
   return (
@@ -42,4 +42,6 @@ export default function App() {
       </Container>
     </div>
   );
-}
+};
+
+export default App;

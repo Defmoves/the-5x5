@@ -44,10 +44,10 @@ type props = {
   type: string;
 };
 
-export default function MediaCard({
+const MediaCard = ({
   article: { title, description, urlToImage, url },
   type
-}: props) {
+}: props) => {
   const classes = useStyles();
   const mediaClass = type === "lead" ? classes.lead : classes.main;
   const handleClick = () => {
@@ -85,4 +85,6 @@ export default function MediaCard({
       </CardActions>
     </Card>
   );
-}
+};
+
+export default MediaCard;

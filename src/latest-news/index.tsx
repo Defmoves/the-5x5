@@ -27,7 +27,7 @@ const fetchArticlesWith = async (country: string) => {
   return json.articles;
 };
 
-export default function LatestNews() {
+const LatestNews = () => {
   const classes = useStyles();
   const [country, setCountry] = useState("");
   const [articles, setArticles] = useState([welcomeMessage]);
@@ -53,4 +53,6 @@ export default function LatestNews() {
       </Grid>
     </div>
   );
-}
+};
+
+export default LatestNews;
