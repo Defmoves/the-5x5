@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface props {
+type props = {
   handleClick: (selected: string) => void;
   selected: string;
-}
+};
 
 export default function Select({ handleClick, selected }: props): JSX.Element {
   const classes = useStyles();

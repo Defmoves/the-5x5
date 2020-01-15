@@ -4,9 +4,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 import Card from "../card";
 
-interface props {
+type props = {
   articles: (object | string)[];
-}
+};
 
 export default function List({ articles }: props): JSX.Element {
   const internalMessage = typeof articles[0] === "string" ? articles[0] : null;

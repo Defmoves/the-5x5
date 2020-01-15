@@ -30,10 +30,10 @@ type articleType = {
   url: string;
 };
 
-interface props {
+type props = {
   article: articleType | any;
   type: string;
-}
+};
 
 export default function MediaCard({
   article: { title, description, urlToImage, url },
